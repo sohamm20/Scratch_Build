@@ -551,66 +551,68 @@ var __webpack_exports__ = {};
 var react = __webpack_require__(540);
 // EXTERNAL MODULE: ./node_modules/react-dom/index.js
 var react_dom = __webpack_require__(961);
-;// CONCATENATED MODULE: ./src/components/Icon.js
+;// CONCATENATED MODULE: ./src/components/blocks/MotionBlock.js
 
-function Icon(_ref) {
+const MotionBlock = _ref => {
   let {
-    name,
-    size = 20,
-    className = ""
+    blockType
   } = _ref;
-  return /*#__PURE__*/react.createElement("svg", {
-    className: `fill-current ${className}`,
-    width: size.toString() + "px",
-    height: size.toString() + "px"
-  }, /*#__PURE__*/react.createElement("use", {
-    xlinkHref: `/icons/solid.svg#${name}`
-  }));
-}
+  // Define block types and their functionalities
+  const handleDragStart = e => {
+    e.dataTransfer.setData("text/plain", blockType);
+  };
+  return /*#__PURE__*/react.createElement("div", {
+    className: "bg-blue-200 p-2 m-2 rounded cursor-pointer",
+    draggable: true,
+    onDragStart: handleDragStart
+  }, blockType);
+};
+/* harmony default export */ const blocks_MotionBlock = (MotionBlock);
+;// CONCATENATED MODULE: ./src/components/blocks/LooksBlock.js
+
+const LooksBlock = _ref => {
+  let {
+    blockType
+  } = _ref;
+  // Define block types and their functionalities
+  const handleDragStart = e => {
+    e.dataTransfer.setData("text/plain", blockType);
+  };
+  return /*#__PURE__*/react.createElement("div", {
+    className: "bg-green-200 p-2 m-2 rounded cursor-pointer",
+    draggable: true,
+    onDragStart: handleDragStart
+  }, blockType);
+};
+/* harmony default export */ const blocks_LooksBlock = (LooksBlock);
 ;// CONCATENATED MODULE: ./src/components/Sidebar.js
+// src/components/Sidebar.js
 
 
-function Sidebar() {
+
+const Sidebar = () => {
   return /*#__PURE__*/react.createElement("div", {
-    className: "w-60 flex-none h-full overflow-y-auto flex flex-col items-start p-2 border-r border-gray-200"
-  }, /*#__PURE__*/react.createElement("div", {
-    className: "font-bold"
-  }, " ", "Events", " "), /*#__PURE__*/react.createElement("div", {
-    className: "flex flex-row flex-wrap bg-yellow-500 text-white px-2 py-1 my-2 text-sm cursor-pointer"
-  }, "When ", /*#__PURE__*/react.createElement(Icon, {
-    name: "flag",
-    size: 15,
-    className: "text-green-600 mx-2"
-  }), "clicked"), /*#__PURE__*/react.createElement("div", {
-    className: "flex flex-row flex-wrap bg-yellow-500 text-white px-2 py-1 my-2 text-sm cursor-pointer"
-  }, "When this sprite clicked"), /*#__PURE__*/react.createElement("div", {
-    className: "font-bold"
-  }, " ", "Motion", " "), /*#__PURE__*/react.createElement("div", {
-    className: "flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer"
-  }, "Move 10 steps"), /*#__PURE__*/react.createElement("div", {
-    className: "flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer"
-  }, "Turn ", /*#__PURE__*/react.createElement(Icon, {
-    name: "undo",
-    size: 15,
-    className: "text-white mx-2"
-  }), "15 degrees"), /*#__PURE__*/react.createElement("div", {
-    className: "flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer"
-  }, "Turn ", /*#__PURE__*/react.createElement(Icon, {
-    name: "redo",
-    size: 15,
-    className: "text-white mx-2"
-  }), "15 degrees"));
-}
-;// CONCATENATED MODULE: ./src/components/MidArea.js
-
-function MidArea() {
-  return /*#__PURE__*/react.createElement("div", {
-    className: "flex-1 h-full overflow-auto"
-  }, "mid area", " ");
-}
+    className: "w-1/4 bg-gray-100 p-4 border-r border-gray-200"
+  }, /*#__PURE__*/react.createElement("h2", {
+    className: "text-lg font-bold mb-4"
+  }, "Blocks"), /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("h3", {
+    className: "font-semibold"
+  }, "Motion"), /*#__PURE__*/react.createElement(blocks_MotionBlock, {
+    blockType: "Move 10 steps"
+  }), /*#__PURE__*/react.createElement(blocks_MotionBlock, {
+    blockType: "Turn 15 degrees"
+  })), /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("h3", {
+    className: "font-semibold"
+  }, "Looks"), /*#__PURE__*/react.createElement(blocks_LooksBlock, {
+    blockType: "Say Hello!"
+  }), /*#__PURE__*/react.createElement(blocks_LooksBlock, {
+    blockType: "Think About It"
+  })));
+};
+/* harmony default export */ const components_Sidebar = (Sidebar);
 ;// CONCATENATED MODULE: ./src/components/CatSprite.js
 
-function CatSprite() {
+function CatSprite_CatSprite() {
   return /*#__PURE__*/react.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     width: "95.17898101806641",
@@ -770,13 +772,290 @@ function CatSprite() {
     strokeWidth: "1"
   }))))))));
 }
+;// CONCATENATED MODULE: ./src/components/MidArea.js
+// import React, { useState } from "react";
+// import CatSprite from "./CatSprite";
+
+// const MidArea = () => {
+//   const [actions, setActions] = useState([]);
+//   const [history, setHistory] = useState([]);
+//   const [replayIndex, setReplayIndex] = useState(0);
+//   const [position, setPosition] = useState({ x: 0, y: 0 });
+//   const [rotation, setRotation] = useState(0); // New state for rotation
+
+//   const handleDrop = (e) => {
+//     e.preventDefault();
+//     const blockType = e.dataTransfer.getData("text/plain");
+//     const newAction = {
+//       type: blockType,
+//       id: Date.now(),
+//     };
+//     setActions([...actions, newAction]);
+//     setHistory([...history, newAction]);
+//   };
+
+//   const handleDragOver = (e) => {
+//     e.preventDefault();
+//   };
+
+//   const handleRun = () => {
+//     let newPosition = { x: 0, y: 0 };
+//     let newRotation = 0;
+
+//     actions.forEach((action) => {
+//       switch (action.type) {
+//         case "Move 10 steps":
+//           newPosition.x += 100;
+//           break;
+//         case "Move -10 steps":
+//           newPosition.x -= 100;
+//           break;
+//         case "Move Up 10 steps":
+//           newPosition.y -= 100;
+//           break;
+//         case "Move Down 10 steps":
+//           newPosition.y += 100;
+//           break;
+//         case "Turn 15 degrees":
+//           newRotation += 15;
+//           break;
+//         default:
+//           break;
+//       }
+//     });
+
+//     setPosition(newPosition);
+//     setRotation(newRotation);
+//   };
+
+//   const handleReplay = () => {
+//     if (replayIndex < history.length) {
+//       const action = history[replayIndex];
+//       console.log(`Replaying action: ${action.type}`);
+//       // Implement action replay
+//       setPosition({ x: 0, y: 0 }); // Reset position for replay
+//       setRotation(0); // Reset rotation for replay
+//       actions.forEach((action) => {
+//         switch (action.type) {
+//           case "Move 10 steps":
+//             setPosition(prev => ({ x: prev.x + 100, y: prev.y }));
+//             break;
+//           case "Move -10 steps":
+//             setPosition(prev => ({ x: prev.x - 100, y: prev.y }));
+//             break;
+//           case "Move Up 10 steps":
+//             setPosition(prev => ({ x: prev.x, y: prev.y - 100 }));
+//             break;
+//           case "Move Down 10 steps":
+//             setPosition(prev => ({ x: prev.x, y: prev.y + 100 }));
+//             break;
+//           case "Turn 15 degrees":
+//             setRotation(prev => prev + 15);
+//             break;
+//           default:
+//             break;
+//         }
+//       });
+//       setReplayIndex(replayIndex + 1);
+//     }
+//   };
+
+//   return (
+//     <>
+//       <div
+//         className="flex-1 bg-gray-200 p-4"
+//         onDrop={handleDrop}
+//         onDragOver={handleDragOver}
+//       >
+//         <button
+//           className="bg-blue-500 text-white p-2 rounded mb-4"
+//           onClick={handleRun}
+//         >
+//           Run
+//         </button>
+//         <button
+//           className="bg-green-500 text-white p-2 rounded mb-4"
+//           onClick={handleReplay}
+//         >
+//           Replay
+//         </button>
+//         {actions.map((action) => (
+//           <div key={action.id} className="border p-2 mb-2">
+//             {action.type}
+//           </div>
+//         ))}
+//       </div>
+
+//       <div className="flex-none h-full overflow-y-auto p-2" style={{ width: "50vw" }}>
+//         <div
+//           style={{
+//             transform: `translate(${position.x}px, ${position.y}px) rotate(${rotation}deg)`,
+//             transition: 'transform 0.5s ease', // Optional: Smooth transition for movement
+//             width: '100px',
+//             height: '100px',
+//           }}
+//         >
+//           <CatSprite />
+//         </div>
+//       </div>
+//     </>
+//   );
+// };
+
+// export default MidArea;
+
+
+
+const MidArea = () => {
+  const [actions, setActions] = (0,react.useState)([]);
+  const [history, setHistory] = (0,react.useState)([]);
+  const [replayIndex, setReplayIndex] = (0,react.useState)(0);
+  const [position, setPosition] = (0,react.useState)({
+    x: 0,
+    y: 0
+  });
+  const [rotation, setRotation] = (0,react.useState)(0);
+  const handleDrop = e => {
+    e.preventDefault();
+    const blockType = e.dataTransfer.getData("text/plain");
+    const newAction = {
+      type: blockType,
+      id: Date.now()
+    };
+    setActions([...actions, newAction]);
+    setHistory([...history, newAction]);
+  };
+  const handleDragOver = e => {
+    e.preventDefault();
+  };
+  const getSlantMovement = (angle, distance) => {
+    // Convert angle to radians
+    const radians = Math.PI / 180 * angle;
+    // Calculate slant movement
+    return {
+      x: distance * Math.cos(radians),
+      y: distance * Math.sin(radians)
+    };
+  };
+  const handleRun = () => {
+    let newPosition = {
+      x: position.x,
+      y: position.y
+    };
+    let newRotation = rotation;
+    actions.forEach(action => {
+      switch (action.type) {
+        case "Move 10 steps":
+          const moveDistance = 100;
+          const move = getSlantMovement(newRotation, moveDistance);
+          newPosition.x += move.x;
+          newPosition.y += move.y;
+          break;
+        case "Move -10 steps":
+          const moveBackDistance = -100;
+          const moveBack = getSlantMovement(newRotation, moveBackDistance);
+          newPosition.x += moveBack.x;
+          newPosition.y += moveBack.y;
+          break;
+        case "Move Up 10 steps":
+          newPosition.y -= 100;
+          break;
+        case "Move Down 10 steps":
+          newPosition.y += 100;
+          break;
+        case "Turn 15 degrees":
+          newRotation += 15;
+          break;
+        case "Say Hello!":
+          alert('Hello!');
+          break;
+        case "Think About It":
+          alert('Thinking....!');
+          break;
+        default:
+          break;
+      }
+    });
+    setPosition(newPosition);
+    setRotation(newRotation);
+  };
+  const handleReplay = () => {
+    if (replayIndex < history.length) {
+      const action = history[replayIndex];
+      console.log(`Replaying action: ${action.type}`);
+      // Reset position and rotation for replay
+      let tempPosition = {
+        x: 0,
+        y: 0
+      };
+      let tempRotation = 0;
+      history.slice(0, replayIndex + 1).forEach(action => {
+        switch (action.type) {
+          case "Move 10 steps":
+            const moveDistance = 100;
+            const move = getSlantMovement(tempRotation, moveDistance);
+            tempPosition.x += move.x;
+            tempPosition.y += move.y;
+            break;
+          case "Move -10 steps":
+            const moveBackDistance = -100;
+            const moveBack = getSlantMovement(tempRotation, moveBackDistance);
+            tempPosition.x += moveBack.x;
+            tempPosition.y += moveBack.y;
+            break;
+          case "Move Up 10 steps":
+            tempPosition.y -= 100;
+            break;
+          case "Move Down 10 steps":
+            tempPosition.y += 100;
+            break;
+          case "Turn 15 degrees":
+            tempRotation += 15;
+            break;
+          default:
+            break;
+        }
+      });
+      setPosition(tempPosition);
+      setRotation(tempRotation);
+      setReplayIndex(replayIndex + 1);
+    }
+  };
+  return /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("div", {
+    className: "flex-1 bg-gray-200 p-4",
+    onDrop: handleDrop,
+    onDragOver: handleDragOver
+  }, /*#__PURE__*/react.createElement("button", {
+    className: "bg-blue-500 text-white p-2 rounded mb-4",
+    onClick: handleRun
+  }, "Run"), /*#__PURE__*/react.createElement("button", {
+    className: "bg-green-500 text-white p-2 rounded mb-4",
+    onClick: handleReplay
+  }, "Replay"), actions.map(action => /*#__PURE__*/react.createElement("div", {
+    key: action.id,
+    className: "border p-2 mb-2"
+  }, action.type))), /*#__PURE__*/react.createElement("div", {
+    className: "flex-none h-full overflow-y-auto p-2",
+    style: {
+      width: "50vw"
+    }
+  }, /*#__PURE__*/react.createElement("div", {
+    style: {
+      transform: `translate(${position.x}px, ${position.y}px) rotate(${rotation}deg)`,
+      transition: 'transform 0.5s ease',
+      width: '100px',
+      height: '100px'
+    }
+  }, /*#__PURE__*/react.createElement(CatSprite_CatSprite, null))));
+};
+/* harmony default export */ const components_MidArea = (MidArea);
 ;// CONCATENATED MODULE: ./src/components/PreviewArea.js
 
 
 function PreviewArea() {
-  return /*#__PURE__*/react.createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     className: "flex-none h-full overflow-y-auto p-2"
-  }, /*#__PURE__*/react.createElement(CatSprite, null));
+  }, /*#__PURE__*/React.createElement(CatSprite, null));
 }
 ;// CONCATENATED MODULE: ./src/App.js
 
@@ -790,9 +1069,7 @@ function App() {
     className: "h-screen overflow-hidden flex flex-row  "
   }, /*#__PURE__*/react.createElement("div", {
     className: "flex-1 h-screen overflow-hidden flex flex-row bg-white border-t border-r border-gray-200 rounded-tr-xl mr-2"
-  }, /*#__PURE__*/react.createElement(Sidebar, null), " ", /*#__PURE__*/react.createElement(MidArea, null)), /*#__PURE__*/react.createElement("div", {
-    className: "w-1/3 h-screen overflow-hidden flex flex-row bg-white border-t border-l border-gray-200 rounded-tl-xl ml-2"
-  }, /*#__PURE__*/react.createElement(PreviewArea, null))));
+  }, /*#__PURE__*/react.createElement(components_Sidebar, null), " ", /*#__PURE__*/react.createElement(components_MidArea, null))));
 }
 ;// CONCATENATED MODULE: ./src/index.js
 
