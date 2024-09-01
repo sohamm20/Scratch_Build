@@ -23,13 +23,14 @@ To run this project locally:
    git clone https://github.com/sohamm20/Scratch_Build.git
 Navigate to the project directory:
 
-cd Scratch_Build
+   ```bash
+   cd Scratch_Build
 Install dependencies:
-
-npm install
+   ```bash
+   npm install
 Start the development server:
-
-npm start
+   ```bash
+   npm start
 Contributing
 Feel free to fork the repository and submit pull requests.
 
